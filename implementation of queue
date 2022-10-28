@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 50
+int q[max],val;
+int rear=-1,front=-1;
+void enqueue(int q[],int);
+void dequeue();
+void peek();
+void display();
+int main()
+{
+	int val,ch,i;
+	while(1)
+	{
+	  printf("\n1. ENQUEUE");
+	  printf("\n2. DEQUEUE");
+      printf("\n3. PEEK");
+	  printf("\n4. DISPLAY");
+	  printf("\n5. EXIT");
+	  printf("\n\nselect an option from list:");
+	  scanf("%d",&ch);
+     switch(ch)
+	 {
+		case 1:
+			printf("Enter number to be added");
+			scanf("%d",&val);
+			enqueue(q ,val);
+			break;
+		case 2:
+			dequeue(q);
+			break;
+		case 3:
+			peek(q);
+			break;
+		case 4:
+			display(q);
+			break;
+		case 5:
+		    printf("EXIT");
+			exit(0);
+		default:
+		    printf("!!!Wrong choice!!!");
+	  
+     }
+	}
+	return 0;
+}
+void enqueue(int q[], int val)
+{
+	if (rear==max-1)
+	    printf("OVERFLOW");
+	else if (front==-1)
+	       {
+	       	front++;
+	       	rear++;
+		   }
+	else
+	  rear++;
+	  q[rear]=val;
+}
+void dequeue (int q[])
+{ 
+   if (front==-1 || front>rear)
+       printf("UNDERFLOW");
+   else
+       val=q[front];
+       front++; 
+	   printf("%d is removed",val);
+}
+void peek ()
+{
+	if(front==-1|| front>rear)
+	  printf("UNDERFLOW");
+	else
+	   {
+		  val=q[front];
+	      printf("value at front is %d",val);
+	    }
+}
+void display()
+{
+	int i;
+	for(i=front;i<=rear;i++)
+	   printf("%d\n",q[i]);
+}
